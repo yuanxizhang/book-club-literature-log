@@ -44,7 +44,7 @@ Users and Meetings are in a many-to-many relationship.
 
 ### Helper methods To Protect The Views
 
-We need to craete two helper methods `current_user` and `logged_in?`. We 
+We need to create two helper methods `current_user` and `logged_in?`. We 
 want to use these helper methods to block content if a user is not logged in.
 
 It's especially important that a user should not be able to edit or delete the
