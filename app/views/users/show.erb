@@ -1,0 +1,27 @@
+<a class="button" href="/logout">Log out</a>
+<h3>user: <%= @user.username %></h3>
+<h1>Literature logs by <%= @user.username %></h1>
+<table align="center">
+        <tr>
+          <th>Logs</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+
+        <% @user.logs.each do |log| %>
+        <tr>
+          <td><a href="/logs/<%= log.id %>"><%= log.book_title %></a></td>
+          <td><a href="/logs/<%= log.id %>/edit" class="button">Edit</a></td>
+          <td> 
+              <form action="/logs/<%= log.id%>/delete" method="post">
+                    <input type="submit" class="button" name="delete" value="Delete">
+              </form>
+          </td>
+        </tr>
+        <% end %>
+        <tr>
+          <td><a class="button" href="/logs/new">New Tweet</a></td>
+          <td></td>
+          <td></td>
+        </tr>
+</table>
