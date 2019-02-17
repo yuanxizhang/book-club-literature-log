@@ -28,11 +28,11 @@ class LogsController < ApplicationController
   end
 
   post '/logs' do
-  	if params["content"].empty?
-      flash[:message] = "Please enter content for your log"
+  	if params["log"]["book_title"].empty?
+      flash[:message] = "Please enter a book title for your log!"
       redirect to '/logs/new'
     end
-    @log = current_user.logs.create(:content => params[:content])
+    @log = current_user.logs.create(params[:log])
      redirect to "/logs"
   end
 
@@ -53,8 +53,8 @@ class LogsController < ApplicationController
   		if @log.user.username == current_user.username
   				erb :"/logs/edit_log"
   		else
-  			flash[:message] = "You can only edit your own logs!"
-  			flash[:message] = "Only #{@log.user.username} can update this log."
+  			flash[:message] = "You can only edit your own reading logs!"
+  			flash[:message] = "Only #{@log.user.username} can update this reading log."
 
   			erb :'/logs/logs'
   		end
@@ -64,14 +64,14 @@ class LogsController < ApplicationController
   end
 
   patch '/logs/:id' do 
-    if params["content"].empty?
-      flash[:message] = "Please enter content for your log!"
+    if params["log"]["book_title"].empty?
+      flash[:message] = "Please enter a book title for your reading log!"
       redirect to "/logs/#{params[:id]}/edit"
     end
 
     log = Log.find(params[:id])
     if log.user == current_user
-      redirect to (log.update(content: params[:content]) ? "/logs/#{log.id}" : "/logs/#{log.id}/edit")
+      redirect to (log.update(params[:log]) ? "/logs/#{log.id}" : "/logs/#{log.id}/edit")
     else
       redirect to '/logs'
     end
@@ -80,7 +80,7 @@ class LogsController < ApplicationController
   post '/logs/:id/delete' do
     @log = Log.find(params[:id])
     if current_user.id != @log.user_id
-      flash[:message] = "Sorry you can only delete your own logs"
+      flash[:message] = "Sorry you can only delete your own reading logs."
       redirect to '/logs'
     end
     @log.delete if @log.user == current_user

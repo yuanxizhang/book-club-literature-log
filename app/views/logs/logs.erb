@@ -1,0 +1,31 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<a class="button" href="/logout">Log out</a>
+<h3>user: <%= @user.username %></h3>
+<table align="center">
+        <tr>
+          <th>Log</th>
+          <th>User</th>
+          <!-- <th>Edit</th>
+          <th>Delete</th> -->
+        </tr>
+
+        <% Log.all.each do |log| %>
+        <tr>
+          <td><a href="/logs/<%= log.id %>"><%= log.content %></a></td>
+          <td><a href="/users/<%= @user.slug %>"><%= log.user.username %></a></td>
+          <!-- <td><a href="/logs/<%= log.id %>/edit" class="button">Edit</a></td>
+          <td>
+              <form action="/logs/<%= log.id%>/delete" method="post">
+                    <input type="submit" class="button" name="delete" value="Delete">
+              </form>
+          </td> -->
+        </tr>
+        <% end %>
+        <tr>
+          <td><a class="button" href="/logs/new">New Reading Log</a></td>
+          <td></td>
+        </tr>
+        
+</table>

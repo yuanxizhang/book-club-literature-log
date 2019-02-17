@@ -1,0 +1,31 @@
+<a class="button" href="/logout">Log out</a>
+<h3>user: <%= @user.username %></h3>
+<h1>Create a new reading log</h1>
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<form action="/logs" method="POST">
+		<table align="center">       
+        <tr><td><label>Book Title: </label></td></tr>
+        <tr><td><input type="text" id="book_title" name="log[book_title]"></td></tr> 
+        <tr><td><label>Start Page: </label></td></tr>
+        <tr><td><input type="text" id="start_page" name="log[start_page]"></td></tr>
+        <tr><td><label>End Page: </label></td></tr>
+        <tr><td><input type="text" id="end_page" name="log[end_page]"></td></tr>
+        <tr><td><label>Summary: List 3 key events/details from this section of the book.</label></td></tr>
+        <tr><td><input type="text" id="summary" name="log[summary]"></td></tr> 
+        <tr><td><label>Techniques: Write one technique that seems important in your novel.</label></td></tr>
+        <tr><td><input type="text" id="techniques" name="log[techniques]"></td></tr>
+        <tr><td><label>Characters: Describe one of the primary characters in your novel.</label></td></tr>
+        <tr><td><input type="text" id="characters" name="log[characters]"></td></tr>
+        <tr><td><label>Word Choice: How would you describe the language/word choice in your book? </label></td></tr>
+        <tr><td><input type="text" id="word_choice" name="log[word_choice]"></td></tr> 
+        <tr><td><label>Metacognition: Describe your experience reading this book. (Fun? Boring? Confusing?)</label></td></tr>
+        <tr><td><input type="text" id="start_page" name="log[metacognition]"></td></tr>
+        <tr><td><label>Question: Write one discussion question for your book club meeting.</label></td></tr>
+        <tr><td><input type="text" id="question" name="log[question]"></td></tr>
+        <tr><td><input type="submit" value="submit" class="button"></td></tr>        
+		</table>
+</form>

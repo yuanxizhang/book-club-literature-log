@@ -1,0 +1,15 @@
+<table align="center">       
+        
+        <tr><td><p>by user: <%= @log.user.username %></p></td></tr>
+        <tr><td><h5><%= @log.book_title %></h5></td></tr>
+        <tr>
+                <td><a class="button" href="/logs/<%= @log.id %>/edit">Edit</a></td>
+        </tr>
+        <tr>       
+                <td>	
+        	<form action="/logs/<%=@log.id%>/delete" method="post">
+		      <input type="submit" class="button" name="delete" value="Delete">
+		</form>
+	       </td>							
+	</tr>        
+</table>
