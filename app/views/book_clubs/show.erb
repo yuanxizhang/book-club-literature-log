@@ -19,6 +19,11 @@
 				<ul>
 				<% @book_club.users.each do |user| %>
 					<li><a href="/users/<%= user.slug %>"> <%= user.username %></a></li>
+					<ul>
+					<% user.logs.each do |log| %>
+							<li><a href="/logs/<%= log.id %>"> <%= log.book_title %></a></li>
+					<% end %>	
+					</ul>
 				<% end %>
 				</ul>
 			</td>
