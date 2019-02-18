@@ -1,0 +1,32 @@
+<a class="button" href="/book_clubs">all book clubs</a>
+<a class="button" href="/logs">all reading logs</a>
+<h1>Create a New Book Club</h1>
+<form action='/book_clubs' method="POST">
+	<table align="center">       
+        <tr>
+        	<td>
+        			<label for "name">Book Club Name:</label>
+							<input type="text" id="name" name="book_club[name]">
+        	</td>
+       </tr>
+       <tr>
+        	<td>
+        			<label for "about">Description:</label>
+							<input type="text" id="about" name="book_club[about]">
+        	</td>
+       </tr>
+       <tr>
+        	<td>
+        			<label for "organizer">Organizer:</label>
+							<input type="text" id="organizer" name="book_club[organizer]">
+        	</td>
+       </tr>
+       <tr>
+        	<td>
+        			<input class="button" type="submit" id="submit" value="submit">
+        	</td>
+       </tr>     
+	</table>
+</form>
+
+

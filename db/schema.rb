@@ -34,9 +34,7 @@ ActiveRecord::Schema.define(version: 20190216171244) do
 
   create_table "meetings", force: :cascade do |t|
     t.string  "topic"
-    t.date    "date"
-    t.time    "start_time"
-    t.time    "end_time"
+    t.string  "date_and_time"
     t.string  "location"
     t.integer "book_club_id"
   end

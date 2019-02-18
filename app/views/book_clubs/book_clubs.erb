@@ -1,0 +1,20 @@
+<h1>All Book Clubs</h1>
+<table align="center">
+        <tr>
+          <th>Book Club</th>
+          <th>Organizer</th>
+        </tr>
+
+        <% BookClub.all.each do |bookclub| %>
+        <tr>
+          <td><a href="/book_clubs/<%= bookclub.id %>"><%= bookclub.name %></a></td>
+          <td><%= bookclub.organizer %></a></td>          
+        </tr>
+        <% end %>
+        <tr>
+          <td><a class="button" href="/book_clubs/new">New Book Club</a></td>
+          <td></td>
+        </tr>
+        
+</table>
+

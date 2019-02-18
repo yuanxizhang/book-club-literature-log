@@ -6,7 +6,7 @@ class BookClubsController < ApplicationController
 
 	get '/book_clubs' do
     @book_clubs = BookClub.all
-    erb :'/book_clubs/index' 
+    erb :'/book_clubs/book_clubs' 
   end
 
   # Create a book club
@@ -20,11 +20,11 @@ class BookClubsController < ApplicationController
   end
 
   post '/book_clubs' do
-    if params["name"].empty?
+    if params["book_club"]["name"].empty?
       flash[:message] = "Please enter name for your book club!"
       redirect to '/book_clubs/new'
     end
-    @book_club = current_user.book_clubs.create(:name => params[:name], :about => params[:about],:organizer => params[:organizer])
+    @book_club = BookClub.create(params[:book_club])
      redirect to "/book_clubs"
   end
 

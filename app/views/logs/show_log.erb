@@ -1,7 +1,22 @@
+<a class="button" href="/book_clubs">all book clubs</a>
+<a class="button" href="/logs">all reading logs</a>
 <table align="center">       
         
         <tr><td><p>by user: <%= @log.user.username %></p></td></tr>
-        <tr><td><h5><%= @log.book_title %></h5></td></tr>
+        <tr><td><h3>Title: <%= @log.book_title %></h3></td></tr>
+        <tr><td>Pages: <%= @log.start_page %> to  <%= @log.end_page %></td></tr>
+        <tr><td><B>Summary:  </B></td></tr>
+        <tr><td><%= @log.summary %></td></tr>
+        <tr><td><B>Techniques: </B></td></tr>
+        <tr><td><%= @log.techniques %></td></tr>
+        <tr><td><B>Characters: </B></td></tr>
+        <tr><td><%= @log.characters %></td></tr>
+        <tr><td><B>Word Choice: </B></td></tr>
+        <tr><td><%= @log.word_choice %></td></tr>
+        <tr><td><B>Metacognition: </B></td></tr>
+        <tr><td><%= @log.metacognition %></td></tr>
+        <tr><td><B>Discussion Question: </B></td></tr>
+        <tr><td><%= @log.question %></td></tr>
         <tr>
                 <td><a class="button" href="/logs/<%= @log.id %>/edit">Edit</a></td>
         </tr>

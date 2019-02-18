@@ -51,11 +51,9 @@ class LogsController < ApplicationController
   	if logged_in?
   		@log = Log.find_by_id(params[:id])
   		if @log.user.username == current_user.username
-  				erb :"/logs/edit_log"
+  				erb :"/logs/edit"
   		else
   			flash[:message] = "You can only edit your own reading logs!"
-  			flash[:message] = "Only #{@log.user.username} can update this reading log."
-
   			erb :'/logs/logs'
   		end
   	else

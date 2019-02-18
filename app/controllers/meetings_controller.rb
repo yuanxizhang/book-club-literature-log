@@ -6,16 +6,16 @@ class MeetingsController < ApplicationController
 
 	get '/meetings' do
     @meetings = Meeting.all
-    erb :'/meetings/index' 
+    erb :'/meetings/meetings' 
   end
 
   # Create meeting
   get '/meetings/new' do
-    if meetingged_in?
+    if logged_in?
       @user = current_user
       erb :"/meetings/new"
     else
-      redirect to '/meetingin'
+      redirect to '/login'
     end
   end
 
@@ -24,9 +24,7 @@ class MeetingsController < ApplicationController
       flash[:message] = "Please enter content for your meeting"
       redirect to '/meetings/new'
     end
-    @meeting = current_user.meetings.create(:topic => params[:topic],
-      :date => params[:date], :start_time => params[:start_time], :end_time => params[:end_time],
-      :location => params[:location])
+    @meeting = current_user.meetings.create(params[:meeting])
      redirect to "/meetings"
   end
 
@@ -40,16 +38,15 @@ class MeetingsController < ApplicationController
   get '/meetings/:id/edit' do
     if logged_in?
       @meeting = Meeting.find_by_id(params[:id])
-      if @meeting.user.username == current_user.username
-          erb :"/meetings/edit_meeting"
+      if @meeting.book_club.organizer == current_user.username
+          erb :"/meetings/edit"
       else
-        flash[:message] = "You can only edit your own meetings!"
-        flash[:message] = "Only #{@meeting.user.username} can update this meeting."
+        flash[:message] = "Only organizer of #{@meeting.book_club.name} can update this meeting."
 
         erb :'/meetings/meetings'
       end
     else
-      redirect to '/meetingin'
+      redirect to '/login'
     end 
   end
 
@@ -60,10 +57,8 @@ class MeetingsController < ApplicationController
     end
 
     meeting = Meeting.find(params[:id])
-    if meeting.user == current_user
-      redirect to (meeting.update(:topic => params[:topic],
-      :date => params[:date], :start_time => params[:start_time], :end_time => params[:end_time],
-      :location => params[:location]) ? "/meetings/#{meeting.id}" : "/meetings/#{meeting.id}/edit")
+    if meeting.book_club.organizer == current_user.username
+      redirect to (meeting.update(params[:meeting]) ? "/meetings/#{meeting.id}" : "/meetings/#{meeting.id}/edit")
     else
       redirect to '/meetings'
     end

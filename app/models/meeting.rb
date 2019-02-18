@@ -4,8 +4,6 @@ class Meeting < ActiveRecord::Base
   has_many :users, through: :user_meetings
 
   validates :topic, presence: true
-  validates :date, presence: true 
-  validates :start_time, presence: true
-  validates :end_time, presence: true
+  validates :date_and_time, presence: true 
   validates :location, presence: true
 end

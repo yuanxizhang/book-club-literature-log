@@ -1,0 +1,32 @@
+<a class="button" href="/book_clubs">all book clubs</a>
+<a class="button" href="/meetings">all meetings</a>
+<h1>Create a New Book Discussion Meeting</h1>
+<form action='/meetings' method="POST">
+	<table align="center">       
+        <tr>
+        	<td>
+        			<label for "topic">Meeting Topic:</label>
+							<input type="text" id="topic" name="meeting[topic]">
+        	</td>
+       </tr>
+       <tr>
+        	<td>
+        			<label for "date_and_time">Date and time:</label>
+							<input type="text" id="date_and_time" name="meeting[date_and_time]">
+        	</td>
+       </tr>
+       <tr>
+        	<td>
+        			<label for "location">Location:</label>
+							<input type="text" id="location" name="meeting[location]">
+        	</td>
+       </tr>
+       <tr>
+        	<td>
+        			<input class="button" type="submit" id="submit" value="submit">
+        	</td>
+       </tr>     
+	</table>
+</form>
+
+

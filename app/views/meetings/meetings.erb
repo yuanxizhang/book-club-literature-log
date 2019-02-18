@@ -1,0 +1,25 @@
+<a class="button" href="/book_clubs">all book clubs</a>
+<a class="button" href="/logs">all reading logs</a>
+<h1>All Book Discussion Meetings</h1>
+<table align="center">
+        <tr>
+          <th>Meeting Topic</th>
+          <th>Date and Time</th>
+          <th>Location</th>
+          <th>Book Club</th>
+        </tr>
+
+        <% Meeting.all.each do |meeting| %>
+        <tr>
+          <td><a href="/meetings/<%= meeting.id %>"><%= meeting.topic %></a></td>
+          <td><%= meeting.date_and_time %></a></td>  
+          <td><%= meeting.location %></a></td>
+          <td><a href="/book_clubs/<%= meeting.book_club.id %>"><%= meeting.book_club.name %></a></td>         
+        </tr>
+        <% end %>
+        <tr>
+          <td><a class="button" href="/meetings/new">New Meeting</a></td>
+          <td></td>
+        </tr>
+        
+</table>
