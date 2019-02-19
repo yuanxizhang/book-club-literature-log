@@ -1,9 +1,9 @@
 book_club_list = []
 
 3.times do
-  name = ["Graphic Novel Book Club", "Science Fiction Book Club", "Teen Book Club"].sample
-  about = "We meet once a month and discuss the books our members selected at the beginning of the year."
-  organizer = Faker::Name.first_name
+  name = ["Graphic Novel", "Science Fiction", "Teen Book Club"].sample + " Book Club"
+  about = "We meet once a month and discuss the books our members selected."
+  organizer = Faker::Name.first_name.downcase
 
   # Add book club to the list
   book_club_list << [name, about, organizer]
@@ -19,7 +19,7 @@ meeting_list = []
   topic = "Book Discussion: " + Faker::Book.title 
   date_and_time = "First " + ["Monday", "Tuesday", "Wednesday", "Thursday"].sample + " of each month at 6:00 PM."
   location = "Berkeley Public Library " + ["North", "West", "South", "Central"].sample + " Branch"
-  book_club_id = 1 + rand(3)
+  book_club_id = [1,2,3].sample
 
   # Add meeting to the list
   meeting_list << [topic, date_and_time, location, book_club_id]
