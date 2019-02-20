@@ -8,15 +8,16 @@ gem 'require_all'
 gem 'sqlite3', '~>1.3.6'
 gem 'thin'
 gem 'shotgun'
-gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem "faker"
+gem 'rack-test'
+gem 'pry'
+gem 'rb-readline'
 gem 'rack-flash3'
 
 group :test do
   gem 'rspec'
-  gem 'capybara'
-  gem 'rack-test'
+  gem 'capybara'	
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end

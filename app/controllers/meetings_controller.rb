@@ -30,8 +30,13 @@ class MeetingsController < ApplicationController
       flash[:message] = "Please enter a location for your book club meeting!"
       redirect to '/meetings/new'
     end
-    @meeting = current_user.meetings.create(params[:meeting])
-    @meeting.book_club = BookClub.find_or_create_by(:name => params[:meeting][:book_club])
+    @meeting = Meeting.new(
+        topic: params["meeting"]["topic"], 
+        date_and_time: params["meeting"]["date_and_time"], 
+        location: params["meeting"]["location"])
+    @meeting.book_club = BookClub.find_or_create_by(:name => params["meeting"]["book_club"])
+    @meeting.users << @user
+    @meeting.save
      redirect to "/meetings"
   end
 

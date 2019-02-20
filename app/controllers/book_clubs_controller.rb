@@ -31,6 +31,7 @@ class BookClubsController < ApplicationController
       redirect to '/book_clubs/new'
     end
     @book_club = BookClub.create(params[:book_club])
+    @book_club.users << @user
      redirect to "/book_clubs"
   end
 

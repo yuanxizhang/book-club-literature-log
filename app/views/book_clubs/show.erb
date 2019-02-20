@@ -1,6 +1,5 @@
 <a class="button" href="/book_clubs">All book clubs</a>
-<a class="button" href="/book_clubs/new">New Book Club</a>
-<a class="button" href="/book_clubs/<%= @book_club.id %>/edit">Edit Book Club</a>
+
 <table align="center">          
 		<tr><td><h3><%= @book_club.name %></h3></td></tr>
 		<tr><td>About: </td></tr>
@@ -31,7 +30,10 @@
 				</ul>
 			</td>
 		</tr>
+		<td><tr><a class="button" href="/book_clubs/<%= @book_club.id %>/edit">Edit Book Club</a><a class="button" href="/book_clubs/new">New Book Club</a></tr> </td>
 		<tr>
        <td><a class="button" href="/meetings/new">New Meetings</a></td>
     </tr>
 </table>
+
+
