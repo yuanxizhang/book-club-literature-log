@@ -26,27 +26,8 @@
 							<input type="text" id="organizer" name="book_club[organizer]">
         	</td>
        </tr>
-       <tr><td><h3>Choose from existing users and meetings: </h3></td></tr>
-       <tr>
-          <td>
-            <ul><label><b>User</b></label>
-            <% User.all.each do |user| %>
-              <li><input type="checkbox" id="<%= user.id %>"  name="book_club[users][]" value="<%= user.id %>"><%=user.username%></input></li>
-            <%end%>
-            </ul>
-        </td>
-       </tr>
-       <tr>
-        <td>
-            <ul><label><b>Meeting</b></label>
-            <% Meeting.all.each do |meeting| %>
-            <li><input type="checkbox" id="<%= meeting.id %>"  name="book_club[meetings][]" value="<%= meeting.id%>"><%=meeting.topic%></input></li>
-            <%end%>
-            </ul>
-        </td>
-       </tr>
-       <tr>
-        <td><h2>and/or, create a new meeting</h2>
+      <tr>
+        <td><h2>create a new meeting</h2>
         <label for="new_meeting">Meeting Topic:</label>
         <input type="text" id="meeting_topic" name="meeting[topic]"><br>
         <label for="new_meeting">Date and Time:</label>
@@ -56,11 +37,11 @@
         <br>
         </td>
       </tr> 
-       <tr>
+      <tr>
         	<td>
         			<input class="button" type="submit" id="submit" value="submit">
         	</td>
-       </tr>     
+      </tr>     
 	</table>
 </form>
 

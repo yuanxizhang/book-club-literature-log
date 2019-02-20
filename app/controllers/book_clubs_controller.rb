@@ -27,18 +27,16 @@ class BookClubsController < ApplicationController
     if params[:meeting][:topic]!= ""
         @book_club.meetings << Meeting.create(params[:meeting])
     end
-
-    @book_club.user_ids = params[:book_club][:users]
-    @book_club.meeting_ids = params[:book_club][:meetings]
     @book_club.save
-    flash[:message] = "Successfully created book club: #{@book_club.name}."
-       
-    redirect to "/book_clubs"
 
-    if @book_club.errors.any?
+    if @book_club.save   
+      redirect to "/book_clubs"
+    else
+      if @book_club.errors.any?
         @book_club.errors.each{|attr, msg| flash[:message] = "#{attr} - #{msg}" }
-        redirect to '/book_clubs/new'
-    end   
+      end
+      redirect to '/book_clubs/new'
+    end  
   end
 
   # show a book club
@@ -54,8 +52,7 @@ class BookClubsController < ApplicationController
       if @book_club.organizer.downcase == current_user.username.downcase
           erb :"/book_clubs/edit"
       else
-        flash[:message] = "Only the organizer of the #{@book_club.name} can edit the book club's profile."
-
+        flash[:message] = "Only the organizer of the book club can edit the book club's profile."
         erb :'/book_clubs/book_clubs'
       end
     else
@@ -65,7 +62,7 @@ class BookClubsController < ApplicationController
 
   patch '/book_clubs/:id' do 
     if params["book_club"]["name"].empty?
-      flash[:message] = "Please enter topic for your book club!"
+      flash[:message] = "Please enter name for your book club!"
       redirect to "/book_clubs/#{params[:id]}/edit"
     elsif params["book_club"]["about"].empty?
       flash[:message] = "Please enter the date and time for your book club!"
@@ -75,9 +72,14 @@ class BookClubsController < ApplicationController
       redirect to "/book_clubs/#{params[:id]}/edit"
     end
 
+
     @book_club = BookClub.find(params[:id])
     if @book_club.organizer.downcase == current_user.username.downcase
+      if params[:meeting][:topic]!= ""
+        @book_club.meetings << Meeting.create(params[:meeting])
+      end
       redirect to (@book_club.update(params[:book_club]) ? "/book_clubs/#{@book_club.id}" : "/book_clubs/#{@book_club.id}/edit")
+      
     else
       redirect to '/book_clubs'
     end

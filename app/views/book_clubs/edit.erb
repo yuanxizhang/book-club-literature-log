@@ -15,6 +15,17 @@
         <tr><td><input type="text" id="start_page" name="book_club[about]" value="<%= @book_club.about %>"></td></tr>
         <tr><td><label><b>Organizer: </b></label></td></tr>
         <tr><td><input type="text" id="end_page" name="book_club[organizer]" value="<%= @book_club.organizer %>"></td></tr>
+        <tr>
+        <td><h2>create a new meeting</h2>
+        <label for="new_meeting">Meeting Topic:</label>
+        <input type="text" id="meeting_topic" name="meeting[topic]"><br>
+        <label for="new_meeting">Date and Time:</label>
+        <input type="text" id="new_meeting" name="meeting[date_and_time]"><br>
+        <label for="new_meeting">Location:</label>
+        <input type="text" id="new_meeting" name="meeting[location]"><br>
+        <br>
+        </td>
+      </tr> 
         <tr><td><input type="submit" value="submit" class="button"></td></tr>        
 	</table>
 </form>

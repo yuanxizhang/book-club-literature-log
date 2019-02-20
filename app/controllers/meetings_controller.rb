@@ -25,14 +25,14 @@ class MeetingsController < ApplicationController
         date_and_time: params["meeting"]["date_and_time"], 
         location: params["meeting"]["location"])
     @meeting.book_club = BookClub.find_or_create_by(:name => params["meeting"]["book_club"])
-    @song.genre_ids = params[:song][:genres]
-    @song.save
+    @meeting.save
 
-    flash[:message] = "Successfully created book club: #{@book_club.name}."
     if @meeting.save
         redirect to "/meetings"
     else
+      if @meeting.errors.any?
         @meeting.errors.each{|attr, msg| flash[:message] = "#{attr} - #{msg}" }
+      end
         redirect to '/meetings/new'
     end
   end
