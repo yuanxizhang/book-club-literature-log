@@ -29,7 +29,6 @@ class UsersController < ApplicationController
 				login(@user.id)
         redirect to '/logs'
     else
-        @user.errors.each{|attr, msg| flash[:message] = "#{attr} - #{msg}" }
         redirect to '/signup'
     end
   end
@@ -55,7 +54,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/logs'
     else
-      @user.errors.each{|attr, msg| flash[:message] = "#{attr} - #{msg}" }
       erb :'users/login'
     end
   end

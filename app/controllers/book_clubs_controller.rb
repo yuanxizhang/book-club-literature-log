@@ -20,18 +20,25 @@ class BookClubsController < ApplicationController
   end
 
   post '/book_clubs' do
-    @book_club = BookClub.create(params[:book_club])
-    if params[:meeting][:topic]!=""
+    @book_club = BookClub.new(
+        name: params["book_club"]["name"], 
+        about: params["book_club"]["about"], 
+        organizer: params["book_club"]["organizer"])
+    if params[:meeting][:topic]!= ""
         @book_club.meetings << Meeting.create(params[:meeting])
     end
-    
-    if @bookclub.save
-        redirect to "/book_clubs"
-    else
+
+    @book_club.user_ids = params[:book_club][:users]
+    @book_club.meeting_ids = params[:book_club][:meetings]
+    @book_club.save
+    flash[:message] = "Successfully created book club: #{@book_club.name}."
+       
+    redirect to "/book_clubs"
+
+    if @book_club.errors.any?
         @book_club.errors.each{|attr, msg| flash[:message] = "#{attr} - #{msg}" }
         redirect to '/book_clubs/new'
-    end
-     
+    end   
   end
 
   # show a book club
@@ -47,7 +54,7 @@ class BookClubsController < ApplicationController
       if @book_club.organizer.downcase == current_user.username.downcase
           erb :"/book_clubs/edit"
       else
-        flash[:message] = "Only the organizer of the book club can update this information."
+        flash[:message] = "Only the organizer of the #{@book_club.name} can edit the book club's profile."
 
         erb :'/book_clubs/book_clubs'
       end

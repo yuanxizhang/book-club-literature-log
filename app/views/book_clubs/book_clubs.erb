@@ -1,6 +1,11 @@
 <a class="button" href="/meetings">All meetings</a>
 <a class="button" href="/logs">All reading logs</a>
 <h1>All Book Clubs</h1>
+<div align="center">
+<% if flash.has?(:message) %>
+  <span style="color:red"><%= flash[:message] %></span>
+<% end %>
+</div>
 <table align="center">
         <tr>
           <th>Book Club</th>

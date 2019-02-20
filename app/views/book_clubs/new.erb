@@ -31,7 +31,7 @@
           <td>
             <ul><label><b>User</b></label>
             <% User.all.each do |user| %>
-              <li><input type="checkbox" id="user_<%=user.id%>" name="book_club[user_ids][]" value="<%=user.id%>"><%=user.username%></input></li>
+              <li><input type="checkbox" id="<%= user.id %>"  name="book_club[users][]" value="<%= user.id %>"><%=user.username%></input></li>
             <%end%>
             </ul>
         </td>
@@ -40,7 +40,7 @@
         <td>
             <ul><label><b>Meeting</b></label>
             <% Meeting.all.each do |meeting| %>
-            <li><input type="checkbox" id="meeting_<%=meeting.id%>" name="book_club[meeting_ids][]" value="<%=meeting.id%>"><%=meeting.topic%></input></li>
+            <li><input type="checkbox" id="<%= meeting.id %>"  name="book_club[meetings][]" value="<%= meeting.id%>"><%=meeting.topic%></input></li>
             <%end%>
             </ul>
         </td>
