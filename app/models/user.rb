@@ -4,14 +4,18 @@ class User < ActiveRecord::Base
   has_many :meetings, through: :user_meetings
   belongs_to :book_club
 
-
   has_secure_password
 
-  validates :username, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
+  validates_presence_of :username
   validates_uniqueness_of :username
+  validates_length_of :username, :in => 3..30
 
+  validates :email, presence: true
+  validates :email, email_format: { message: "This doesn't look like an email address" }
+
+  validates :password, presence: true
+  validates :password, length: { in: 3..20 }
+  
   def slug
       self.username.strip.gsub(" ", "-").downcase
   end

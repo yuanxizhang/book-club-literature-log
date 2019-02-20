@@ -15,6 +15,7 @@ gem 'rack-test'
 gem 'pry'
 gem 'rb-readline'
 gem 'rack-flash3'
+gem 'validates_email_format_of'
 
 group :test do
   gem 'rspec'
