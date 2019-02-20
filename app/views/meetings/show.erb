@@ -1,11 +1,12 @@
-<a class="button" href="/meetings">all meetings</a>
+<a class="button" href="/book_clubs">All book clubs</a>
+<a class="button" href="/meetings">All meetings</a>
 <table align="center">          
 		<tr><td><h3>Meeting Topic: <%= @meeting.topic %></h3></td></tr>
 		<tr><td>Date and time: <%= @meeting.date_and_time %></td></tr>
 		<tr><td>Location: <%= @meeting.location %></td></tr>
 		<tr><td>Book Club:  <%= @meeting.book_club.name %></td></tr>
 		
-		<tr><td>Members:</td></tr>
+		<tr><td>Members who plan to attend:</td></tr>
 		<tr>
 			<td>
 				<ul>
@@ -16,12 +17,12 @@
 			</td>
 		</tr>
 		<tr>
-        <td><a class="button" href="/meetings/<%= @meeting.id %>/edit">Edit</a></td>
+        <td><a class="button" href="/meetings/<%= @meeting.id %>/edit">Edit Meeting</a></td>
     </tr>
     <tr>       
     	<td>	
         	<form action="/meetings/<%=@meeting.id%>/delete" method="post">
-		      	<input type="submit" class="button" name="delete" value="Delete">
+		      	<input type="submit" class="button" name="delete" value="Delete Meeting">
 					</form>
 	    </td>							
 	  </tr>        

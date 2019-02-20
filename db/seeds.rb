@@ -3,7 +3,7 @@ book_club_list = []
 3.times do
   name = ["Graphic Novel", "Science Fiction", "Teen Book Club"].sample + " Book Club"
   about = "We meet once a month and discuss the books our members selected."
-  organizer = Faker::Name.first_name.downcase
+  organizer = Faker::Name.first_name
 
   # Add book club to the list
   book_club_list << [name, about, organizer]

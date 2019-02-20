@@ -1,9 +1,14 @@
+<a class="button" href="/book_clubs">all book clubs</a>
+<a class="button" href="/meetings">all meetings</a>
+<a class="button" href="/logout">Log out</a>
+<h3>user: <%= @user.username %></h3>
+
+<h1>All Literature Log</h1>
+
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-<a class="button" href="/book_clubs">all book clubs</a>
-<a class="button" href="/logout">Log out</a>
-<h3>user: <%= @user.username %></h3>
+<br>
 <table align="center">
         <tr>
           <th>Literature Log</th>

@@ -1,11 +1,12 @@
 <a class="button" href="/">Home</a>
 <a class="button" href="/book_clubs">all book clubs</a>
 <a class="button" href="/logs">all reading logs</a>
+
+<h1>Create a new Book Club user account</h1>
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
 <br>
-<h1>Create a new Book Club user account</h1>
 <form action='/signup' method="POST">
 	<table align="center">       
         <tr>

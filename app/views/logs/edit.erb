@@ -1,11 +1,10 @@
 <a class="button" href="/logout">Log out</a>
 
+<h1>Edit Literature Log</h1>
+
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-
-<h1>Edit Literature Log</h1>
-
 <form action="/logs/<%=@log.id%>" method="POST">
 		<input type="hidden" name="_method" value="patch">
 				<table align="center">       

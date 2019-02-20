@@ -1,6 +1,12 @@
-<a class="button" href="/book_clubs">all book clubs</a>
-<a class="button" href="/meetings">all meetings</a>
+<a class="button" href="/book_clubs">All book clubs</a>
+<a class="button" href="/meetings">All meetings</a>
+<a class="button" href="/logout">Log out</a>
 <h1>Create a New Book Discussion Meeting</h1>
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<br>
 <form action='/meetings' method="POST">
 	<table align="center">       
         <tr>
@@ -20,6 +26,12 @@
         			<label for "location">Location:</label>
 							<input type="text" id="location" name="meeting[location]">
         	</td>
+       </tr>
+       <tr>
+         <td>
+              <label>Book Club:</label>
+              <input type="text" name="book_club" id="meeting[book_club]"><br>
+         </td>
        </tr>
        <tr>
         	<td>

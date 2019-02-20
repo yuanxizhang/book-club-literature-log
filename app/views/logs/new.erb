@@ -1,11 +1,11 @@
 <a class="button" href="/logout">Log out</a>
 <h3>user: <%= @user.username %></h3>
 
+<h1>Create a new literature log</h1>
+
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-
-<h1>Create a new reading log</h1>
 
 <form action="/logs" method="POST">
 		<table align="center">       

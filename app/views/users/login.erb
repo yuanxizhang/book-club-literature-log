@@ -1,4 +1,8 @@
 <h1>Log in to Book Club</h1>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<br>
 <form method="POST" action='/login'>
 	<table align="center">       
         <tr>

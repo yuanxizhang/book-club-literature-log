@@ -9,6 +9,19 @@ class UsersController < ApplicationController
   end
  
   post '/signup' do 
+    if params["username"].empty?
+      flash[:message] = "Please enter a username!"
+      redirect to '/signup'
+    elsif params["email"].empty?
+      flash[:message] = "Please enter an email!"
+      redirect to '/signup'
+    elsif params["password"].empty?
+      flash[:message] = "Please enter a password!"
+      redirect to '/signup'
+    elsif params["book_club"].empty?
+      flash[:message] = "Please enter a book club name!"
+      redirect to '/signup'
+    end
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     @user.book_club = BookClub.find_or_create_by(:name => params[:book_club])
     if @user.save
@@ -29,6 +42,13 @@ class UsersController < ApplicationController
   end
 
 	post "/login" do
+    if params["username"].empty?
+      flash[:message] = "Please enter a username!"
+      redirect to '/login'
+    elsif params["password"].empty?
+      flash[:message] = "Please enter a password!"
+      redirect to '/login'
+    end
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id

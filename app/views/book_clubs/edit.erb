@@ -1,0 +1,20 @@
+<a class="button" href="/logout">Log out</a>
+
+<h1>Edit Book Club: <%=@book_club.name%></h1>
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<br>
+<form action="/book_clubs/<%=@book_club.id%>" method="POST">
+    <input type="hidden" name="_method" value="patch">
+	<table align="center">       
+        <tr><td><label><b>Name: </b></label></td></tr>
+        <tr><td><input type="text" id="book_title" name="book_club[name]" value="<%= @book_club.name %>" ></td></tr> 
+        <tr><td><label><b>About: </b></label></td></tr>
+        <tr><td><input type="text" id="start_page" name="book_club[about]" value="<%= @book_club.about %>"></td></tr>
+        <tr><td><label><b>Organizer: </b></label></td></tr>
+        <tr><td><input type="text" id="end_page" name="book_club[organizer]" value="<%= @book_club.organizer %>"></td></tr>
+        <tr><td><input type="submit" value="submit" class="button"></td></tr>        
+	</table>
+</form>
