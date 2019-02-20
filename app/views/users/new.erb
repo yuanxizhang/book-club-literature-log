@@ -1,10 +1,7 @@
-<a class="button" href="/">Home</a>
-<a class="button" href="/book_clubs">all book clubs</a>
-<a class="button" href="/logs">all reading logs</a>
-
 <h1>Create a new Book Club user account</h1>
+
 <% if flash.has?(:message) %>
-  <%= flash[:message] %>
+  <span style="color:red"><%= flash[:message] %></span>
 <% end %>
 <br>
 <form action='/signup' method="POST">
@@ -30,7 +27,7 @@
        <tr>
          <td>
               <label>Book Club:</label>
-              <input type="text" name="book_club" id="Book Club Name"><br>
+              <input type="text" name="book_club" id="book_club"><br>
          </td>
        </tr>
        <tr>

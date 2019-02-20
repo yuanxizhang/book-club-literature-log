@@ -20,24 +20,19 @@ class MeetingsController < ApplicationController
   end
 
   post '/meetings' do
-    if params["meeting"]["topic"].empty?
-      flash[:message] = "Please enter a topic for your book club meeting"
-      redirect to '/meetings/new'
-    elsif params["meeting"]["date_and_time"].empty?
-      flash[:message] = "Please enter the date and time for your book club meeting!"
-      redirect to '/meetings/new'
-    elsif params["meeting"]["location"].empty?
-      flash[:message] = "Please enter a location for your book club meeting!"
-      redirect to '/meetings/new'
-    end
     @meeting = Meeting.new(
         topic: params["meeting"]["topic"], 
         date_and_time: params["meeting"]["date_and_time"], 
         location: params["meeting"]["location"])
     @meeting.book_club = BookClub.find_or_create_by(:name => params["meeting"]["book_club"])
-    @meeting.users << @user
-    @meeting.save
-     redirect to "/meetings"
+    @meeting.users << current_user
+    @meeting.bookclub.users << current_user
+    if @meeting.save
+        redirect to "/meetings"
+    else
+        @meeting.errors.each{|attr, msg| flash[:message] = "#{attr} - #{msg}" }
+        redirect to '/meetings/new'
+    end
   end
 
   # Show meeting

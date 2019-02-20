@@ -1,6 +1,7 @@
 <h1>Log in to Book Club</h1>
+
 <% if flash.has?(:message) %>
-  <%= flash[:message] %>
+  <span style="color:red"><%= flash[:message] %></span>
 <% end %>
 <br>
 <form method="POST" action='/login'>

@@ -4,7 +4,7 @@
 <h1>Create a New Book Discussion Meeting</h1>
 
 <% if flash.has?(:message) %>
-  <%= flash[:message] %>
+  <span style="color:red"><%= flash[:message] %></span>
 <% end %>
 <br>
 <form action='/meetings' method="POST">

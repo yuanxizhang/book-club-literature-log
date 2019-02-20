@@ -4,9 +4,9 @@
 <h1>Create a new literature log</h1>
 
 <% if flash.has?(:message) %>
-  <%= flash[:message] %>
+  <span style="color:red"><%= flash[:message] %></span>
 <% end %>
-
+<br>
 <form action="/logs" method="POST">
 		<table align="center">       
         <tr><td><label>Book Title: </label></td></tr>

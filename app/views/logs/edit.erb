@@ -3,8 +3,9 @@
 <h1>Edit Literature Log</h1>
 
 <% if flash.has?(:message) %>
-  <%= flash[:message] %>
+  <span style="color:red"><%= flash[:message] %></span>
 <% end %>
+<br>
 <form action="/logs/<%=@log.id%>" method="POST">
 		<input type="hidden" name="_method" value="patch">
 				<table align="center">       

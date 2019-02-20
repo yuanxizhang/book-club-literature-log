@@ -2,6 +2,10 @@
 <a class="button" href="/logs">all reading logs</a>
 <a class="button" href="/logout">Log out</a>
 <h1>Create a New Book Club</h1>
+
+<% if flash.has?(:message) %>
+  <span style="color:red"><%= flash[:message] %></span>
+<% end %>
 <form action='/book_clubs' method="POST">
 	<table align="center">       
         <tr>
@@ -22,6 +26,36 @@
 							<input type="text" id="organizer" name="book_club[organizer]">
         	</td>
        </tr>
+       <tr><td><h3>Choose from existing users and meetings: </h3></td></tr>
+       <tr>
+          <td>
+            <ul><label><b>User</b></label>
+            <% User.all.each do |user| %>
+              <li><input type="checkbox" id="user_<%=user.id%>" name="book_club[user_ids][]" value="<%=user.id%>"><%=user.username%></input></li>
+            <%end%>
+            </ul>
+        </td>
+       </tr>
+       <tr>
+        <td>
+            <ul><label><b>Meeting</b></label>
+            <% Meeting.all.each do |meeting| %>
+            <li><input type="checkbox" id="meeting_<%=meeting.id%>" name="book_club[meeting_ids][]" value="<%=meeting.id%>"><%=meeting.topic%></input></li>
+            <%end%>
+            </ul>
+        </td>
+       </tr>
+       <tr>
+        <td><h2>and/or, create a new meeting</h2>
+        <label for="new_meeting">Meeting Topic:</label>
+        <input type="text" id="meeting_topic" name="meeting[topic]"><br>
+        <label for="new_meeting">Date and Time:</label>
+        <input type="text" id="new_meeting" name="meeting[date_and_time]"><br>
+        <label for="new_meeting">Location:</label>
+        <input type="text" id="new_meeting" name="meeting[location]"><br>
+        <br>
+        </td>
+      </tr> 
        <tr>
         	<td>
         			<input class="button" type="submit" id="submit" value="submit">

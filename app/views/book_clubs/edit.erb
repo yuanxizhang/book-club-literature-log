@@ -1,9 +1,9 @@
 <a class="button" href="/logout">Log out</a>
 
-<h1>Edit Book Club: <%=@book_club.name%></h1>
+<h1>Edit Book Club Info: <%=@book_club.name%></h1>
 
 <% if flash.has?(:message) %>
-  <%= flash[:message] %>
+  <span style="color:red"><%= flash[:message] %></span>
 <% end %>
 <br>
 <form action="/book_clubs/<%=@book_club.id%>" method="POST">
