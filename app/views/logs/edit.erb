@@ -16,15 +16,15 @@
         <tr><td><label>End Page: </label></td></tr>
         <tr><td><input type="text" id="end_page" name="log[end_page]" value="<%= @log.end_page %>"></td></tr>
         <tr><td><label>Summary: List 3 key events/details from this section of the book.</label></td></tr>
-        <tr><td><input type="text" id="summary" name="log[summary]" value="<%= @log.summary%>"></td></tr> 
+        <tr><td><textarea id="summary" name="log[summary]" value="<%= @log.summary%>"></textarea></td></tr> 
         <tr><td><label>Techniques: Write one technique that seems important in your novel.</label></td></tr>
-        <tr><td><input type="text" id="techniques" name="log[techniques]" value="<%= @log.techniques %>"></td></tr>
+        <tr><td><textarea id="techniques" name="log[techniques]" value="<%= @log.techniques %>"></textarea> </td></tr>
         <tr><td><label>Characters: Describe one of the primary characters in your novel.</label></td></tr>
-        <tr><td><input type="text" id="characters" name="log[characters]" value="<%= @log.characters %>"></td></tr>
+        <tr><td><textarea id="characters" name="log[characters]" value="<%= @log.characters %>"></textarea></td></tr>
         <tr><td><label>Word Choice: How would you describe the language/word choice in your book? </label></td></tr>
-        <tr><td><input type="text" id="word_choice" name="log[word_choice]" value="<%= @log.word_choice %>"></td></tr> 
+        <tr><td><textarea id="word_choice" name="log[word_choice]" value="<%= @log.word_choice %>" ></textarea></td></tr> 
         <tr><td><label>Metacognition: Describe your experience reading this book. (Fun? Boring? Confusing?)</label></td></tr>
-        <tr><td><input type="text" id="start_page" name="log[metacognition]" value="<%=@log.metacognition %>"></td></tr>
+        <tr><td><textarea id="start_page" name="log[metacognition]" value="<%=@log.metacognition %>" ></textarea></td></tr>
         <tr><td><label>Question: Write one discussion question for your book club meeting.</label></td></tr>
         <tr><td><input type="text" id="question" name="log[question]" value="<%=@log.question %>"></td></tr>
         <tr><td><input type="submit" value="submit" class="button"></td></tr>        
