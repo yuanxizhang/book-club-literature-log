@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "secret"
+    set :session_secret, "book_club_secret"
   end
 
   get '/' do
@@ -17,6 +17,13 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+    
+    def redirect_if_not_logged_in
+      if !logged_in?
+        flash[:message] = "Please login to your account to view this page!"
+        redirect "/login"
+      end
+    end
 
     def logged_in?
       !!session[:user_id]

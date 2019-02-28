@@ -2,29 +2,18 @@ require './config/environment'
 require 'rack-flash'
 
 class LogsController < ApplicationController
-	enable :sessions
-	use Rack::Flash
-  register Sinatra::ActiveRecordExtension
-  set :session_secret, "my_application_secret"
-  set :views, Proc.new { File.join(root, "../views/") }
 
   get '/logs' do
-    if logged_in?
-    	@user = User.find_by_id(session[:user_id])
-      erb :"/logs/logs"
-    else
-    	redirect to "/login"
-    end   
+    redirect_if_not_logged_in
+    @user = User.find_by_id(session[:user_id])
+    erb :"/logs/logs"
   end
 
   # Create Log
   get '/logs/new' do
-  	if logged_in?
+  	  redirect_if_not_logged_in
       @user = current_user
   		erb :"/logs/new"
-  	else
-      redirect to '/login'
-    end
   end
 
   post '/logs' do
@@ -38,17 +27,14 @@ class LogsController < ApplicationController
 
   # Show Log
   get '/logs/:id' do
-    if logged_in?
+      redirect_if_not_logged_in
     	@log = Log.find_by_id(params[:id])
     	erb :'/logs/show_log'
-    else
-      redirect to '/login'
-    end   
   end
 
    # Edit Log
   get '/logs/:id/edit' do
-  	if logged_in?
+      redirect_if_not_logged_in
   		@log = Log.find_by_id(params[:id])
   		if @log.user.username == current_user.username
   				erb :"/logs/edit"
@@ -56,9 +42,6 @@ class LogsController < ApplicationController
   			flash[:message] = "You can only edit your own reading logs!"
   			erb :'/logs/logs'
   		end
-  	else
-      redirect to '/login'
-    end 
   end
 
   patch '/logs/:id' do 

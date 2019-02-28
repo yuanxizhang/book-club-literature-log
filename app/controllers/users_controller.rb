@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
   
   get '/signup' do
-    if logged_in?
-      redirect to '/logs'
-    else
       erb :'/users/new'
-    end
   end
  
   post '/signup' do 
@@ -34,6 +30,7 @@ class UsersController < ApplicationController
   end
  
   get '/login' do
+    @error_message = params[:error]
 		if logged_in?
       redirect to '/logs'
     else
