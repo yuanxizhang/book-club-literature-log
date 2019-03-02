@@ -11,12 +11,18 @@
         <% Log.all.each do |log| %>
         <tr>
           <td><a href="/logs/<%= log.id %>"><%= log.book_title %></a></td>
-          <td><a href="/users/<%= @user.slug %>"><%= log.user.username %></a></td>
-          <td><a href="/logs/<%= log.id %>/edit" class="button">Edit</a></td>
           <td>
+            <a href="/users/<%= log.user.slug %>"><%= log.user.username %></a></td>
+          <td>
+            <% if current_user.id == log.user_id %>
+            <a href="/logs/<%= log.id %>/edit" class="button">Edit</a>
+            <% end %>
+          </td>
+          <td><% if current_user.id == log.user_id %>
               <form action="/logs/<%= log.id%>/delete" method="post">
                     <input type="submit" class="button" name="delete" value="Delete">
               </form>
+              <% end %>
           </td>
         </tr>
         <% end %>

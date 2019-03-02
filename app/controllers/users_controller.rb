@@ -14,12 +14,8 @@ class UsersController < ApplicationController
     elsif params[:password].nil? || params[:password].empty?
       flash[:message] = "Please enter a password!"
       redirect to '/signup'
-    elsif params[:book_club].nil? || params[:book_club].empty?
-      flash[:message] = "Please enter a book club name!"
-      redirect to '/signup'
     end
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-    @user.book_club = BookClub.find_or_create_by(:name => params[:book_club])
     if @user.save
 				session[:user_id] = @user.id				
 				login(@user.id)
