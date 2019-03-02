@@ -4,6 +4,7 @@ class CreateBookClubs < ActiveRecord::Migration
       t.string :name
       t.string :about
       t.string :organizer
+      t.timestamps
     end
   end
 end

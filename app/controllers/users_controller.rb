@@ -5,16 +5,16 @@ class UsersController < ApplicationController
   end
  
   post '/signup' do 
-    if params[:username].empty?
+    if params[:email].nil? || params[:username].empty?
       flash[:message] = "Please enter a username!"
       redirect to '/signup'
-    elsif params[:email].empty?
+    elsif params[:email].nil? || params[:email].empty?
       flash[:message] = "Please enter an email!"
       redirect to '/signup'
-    elsif params[:password].empty?
+    elsif params[:password].nil? || params[:password].empty?
       flash[:message] = "Please enter a password!"
       redirect to '/signup'
-    elsif params[:book_club].empty?
+    elsif params[:book_club].nil? || params[:book_club].empty?
       flash[:message] = "Please enter a book club name!"
       redirect to '/signup'
     end
@@ -39,10 +39,10 @@ class UsersController < ApplicationController
   end
 
 	post "/login" do
-    if params[:username].empty?
+    if params[:username].nil? || params[:username].empty?
       flash[:message] = "Please enter a username!"
       redirect to '/login'
-    elsif params[:password].empty?
+    elsif params[:password].nil? || params[:password].empty?
       flash[:message] = "Please enter a password!"
       redirect to '/login'
     end

@@ -47,15 +47,16 @@
       <% else %>
         <a class="button" href="/signup">Sign Up</a>
         <a class="button" href="/login"> Log In </a>
-      <%end %>
+      <% end %>
 
     </nav>
     <div class="container">
-      <% if !@error_message.nil? %>
-      <div class="alert alert-warning">
-        <%= @error_message %>
-      </div>
-    <% end %>
+      <div align="center">
+        <% if flash.has?(:message) %>
+            <span style="color:red"><%= flash[:message] %></span>
+        <% end %>
+      </div>    
+    
       <%= yield %> 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

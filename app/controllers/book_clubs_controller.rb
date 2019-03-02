@@ -7,12 +7,9 @@ class BookClubsController < ApplicationController
 
   # Create a book club
   get '/book_clubs/new' do
-    if logged_in?
+      redirect_if_not_logged_in
       @user = current_user
       erb :"/book_clubs/new"
-    else
-      redirect to '/login'
-    end
   end
 
   post '/book_clubs' do
@@ -43,7 +40,7 @@ class BookClubsController < ApplicationController
 
   # Edit a book club
   get '/book_clubs/:id/edit' do
-    if logged_in?
+      redirect_if_not_logged_in
       @book_club = BookClub.find_by_id(params[:id])
       if @book_club.organizer.downcase == current_user.username.downcase
           erb :"/book_clubs/edit"
@@ -51,9 +48,6 @@ class BookClubsController < ApplicationController
         flash[:message] = "Only the organizer of the book club can edit the book club's profile."
         erb :'/book_clubs/book_clubs'
       end
-    else
-      redirect to '/login'
-    end 
   end
 
   patch '/book_clubs/:id' do 
@@ -81,4 +75,29 @@ class BookClubsController < ApplicationController
     end
   end
 
+  # Join a book club
+  get '/book_clubs/:id/join' do
+      redirect_if_not_logged_in
+      @book_club = BookClub.find_by_id(params[:id])
+      if current_user.book_club_id != @book_club.id
+        current_user.update_attribute(:book_club_id, @book_club.id)
+        redirect to "/book_clubs/#{params[:id]}"
+      else
+        flash[:message] = "You are already a member of this book club!"
+        redirect to '/book_clubs'
+      end  
+  end
+
+  # leave a book club
+  get '/book_clubs/:id/leave' do
+      redirect_if_not_logged_in
+      @book_club = BookClub.find_by_id(params[:id])
+      if current_user.book_club_id == @book_club.id
+        current_user.update_attribute(:book_club_id, nil)
+        redirect to "/book_clubs/#{params[:id]}"
+      else
+        flash[:message] = "You are not a member of this book club!"
+        redirect to '/book_clubs'
+      end  
+  end
 end

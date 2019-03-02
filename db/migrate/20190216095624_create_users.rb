@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password_digest
       t.integer :book_club_id
+      t.timestamps
     end
   end
 end

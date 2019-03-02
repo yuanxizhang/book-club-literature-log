@@ -1,8 +1,15 @@
-<table align="center">          
+<table align="center">       
 		<tr><td><h3><%= @book_club.name %></h3></td></tr>
 		<tr><td>About: </td></tr>
 		<tr><td><%= @book_club.about %></td></tr>
 		<tr><td>Organizer: <%= @book_club.organizer %></td></tr>
+		<tr>
+			<% if current_user.book_club_id != @book_club.id %>
+			<td><a href="/book_clubs/<%= @book_club.id %>/join" class="button">Join</a></td> 
+			<% else %>
+			<td><a href="/book_clubs/<%= @book_club.id %>/leave" class="button">Leave</a></td>
+			<% end %>
+		</tr>
 		<tr><td>Meetings:</td></tr>
 		<tr>
 			<td>
@@ -32,9 +39,10 @@
 			<td><a class="button" href="/book_clubs/<%= @book_club.id %>/edit">Edit Book Club</a></td>
 			<td></td><a class="button" href="/book_clubs/new">New Book Club</a></tr>
 		</tr> 
-		<tr>
+	<tr>
        <td><a class="button" href="/meetings/new">New Meetings</a></td>
     </tr>
+       
 </table>
 
 

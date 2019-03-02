@@ -7,12 +7,9 @@ class MeetingsController < ApplicationController
 
   # Create meeting
   get '/meetings/new' do
-    if logged_in?
+      redirect_if_not_logged_in
       @user = current_user
       erb :"/meetings/new"
-    else
-      redirect to '/login'
-    end
   end
 
   post '/meetings' do
@@ -41,7 +38,7 @@ class MeetingsController < ApplicationController
 
    # Edit Meeting
   get '/meetings/:id/edit' do
-    if logged_in?
+      redirect_if_not_logged_in
       @meeting = Meeting.find_by_id(params[:id])
       if @meeting.book_club.organizer.downcase == current_user.username.downcase
           erb :"/meetings/edit"
@@ -50,9 +47,6 @@ class MeetingsController < ApplicationController
 
         erb :'/meetings/meetings'
       end
-    else
-      redirect to '/login'
-    end 
   end
 
   patch '/meetings/:id' do 

@@ -1,9 +1,5 @@
 <h1>Edit Meeting</h1>
 
-<% if flash.has?(:message) %>
-  <span style="color:red"><%= flash[:message] %></span>
-<% end %>
-<br>
 <form action="/meetings/<%=@meeting.id%>" method="POST">
 		<input type="hidden" name="_method" value="patch">
 				<table align="center">       
