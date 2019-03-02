@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Book Club</title>
+    <title>Book Club Literature Log</title>
     <STYLE type="text/css">
         h1 {border: none; text-align: center; color: #3C787E;}
         h2 {border: none; text-align: left; color: #3C787E;}
@@ -35,10 +35,30 @@
     </STYLE>
   </head>
   <body>
+      <nav>
+      <% if logged_in? %>
+        <a class="button" href="/book_clubs">All Book Clubs</a>
+        <a class="button" href="/meetings">All Meetings</a>
+        <a class="button" href="/logs">All Reading Logs</a>
+        <a class="button" href="/logs/new"> New Reading Log </a>
+        <a class="button" href="/logout"> Log Out </a>
+        <p>Hello! <%=current_user.username %></p>
 
+      <% else %>
+        <a class="button" href="/signup">Sign Up</a>
+        <a class="button" href="/login"> Log In </a>
+      <%end %>
+
+    </nav>
     <div class="container">
-      <p><a class="button" href="/">Book Club</a></p>
+      <% if !@error_message.nil? %>
+      <div class="alert alert-warning">
+        <%= @error_message %>
+      </div>
+    <% end %>
+      <%= yield %> 
     </div>
-    <%= yield %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>    
   </body>
 </html>

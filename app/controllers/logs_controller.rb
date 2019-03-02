@@ -12,6 +12,7 @@ class LogsController < ApplicationController
   # Create Log
   get '/logs/new' do
   	  redirect_if_not_logged_in
+      @error_message = params[:error]
       @user = current_user
   		erb :"/logs/new"
   end
@@ -35,6 +36,7 @@ class LogsController < ApplicationController
    # Edit Log
   get '/logs/:id/edit' do
       redirect_if_not_logged_in
+      @error_message = params[:error]
   		@log = Log.find_by_id(params[:id])
   		if @log.user.username == current_user.username
   				erb :"/logs/edit"
